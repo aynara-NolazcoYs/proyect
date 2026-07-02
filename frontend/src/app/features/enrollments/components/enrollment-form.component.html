@@ -1,0 +1,128 @@
+<div class="enrollment-form-wrapper">
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <form [formGroup]="enrollmentForm" (ngSubmit)="onSubmit()" class="enrollment-form">
+    <div class="row">
+      <div class="field-group">
+        <label for="nombre">Nombre</label>
+        <input 
+          id="nombre" 
+          formControlName="nombre" 
+          placeholder="Ej. Juan" 
+          required 
+        />
+        <small *ngIf="enrollmentForm.get('nombre')?.invalid && submitted" class="error">
+          Campo requerido
+        </small>
+      </div>
+      <div class="field-group">
+        <label for="dni">DNI</label>
+        <input 
+          id="dni" 
+          formControlName="dni" 
+          placeholder="Ingresa tu número de DNI" 
+          required 
+        />
+        <small *ngIf="enrollmentForm.get('dni')?.invalid && submitted" class="error">
+          Campo requerido
+        </small>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field-group">
+        <label for="apellido">Apellido</label>
+        <input 
+          id="apellido" 
+          formControlName="apellido" 
+          placeholder="Ej. Perez" 
+          required 
+        />
+        <small *ngIf="enrollmentForm.get('apellido')?.invalid && submitted" class="error">
+          Campo requerido
+        </small>
+      </div>
+      <div class="field-group">
+        <label for="sede">Sede</label>
+        <select id="sede" formControlName="sede" required>
+          <option value="">Selecciona una sede</option>
+          <option *ngFor="let sede of SEDES" [value]="sede.value">
+            {{ sede.label }}
+          </option>
+        </select>
+        <small *ngIf="enrollmentForm.get('sede')?.invalid && submitted" class="error">
+          Campo requerido
+        </small>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field-group">
+        <label for="promotor">Promotor</label>
+        <select id="promotor" formControlName="promotor" required>
+          <option value="">Selecciona un promotor</option>
+          <option *ngFor="let promoter of promoters" [value]="promoter.nombreCompleto">
+            {{ promoter.nombreCompleto }} ({{ promoter.sede }})
+          </option>
+        </select>
+        <small *ngIf="enrollmentForm.get('promotor')?.invalid && submitted" class="error">
+          Campo requerido
+        </small>
+      </div>
+      <div class="field-group">
+        <label for="programa">Programa</label>
+        <select id="programa" formControlName="programa" required>
+          <option value="">Selecciona un programa</option>
+          <option *ngFor="let programa of PROGRAMAS" [value]="programa.value">
+            {{ programa.label }}
+          </option>
+        </select>
+        <small *ngIf="enrollmentForm.get('programa')?.invalid && submitted" class="error">
+          Campo requerido
+        </small>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field-group">
+        <label for="modalidad">Modalidad</label>
+        <select id="modalidad" formControlName="modalidad" required>
+          <option value="">Selecciona una modalidad</option>
+          <option *ngFor="let modalidad of MODALIDADES" [value]="modalidad.value">
+            {{ modalidad.label }}
+          </option>
+        </select>
+        <small *ngIf="enrollmentForm.get('modalidad')?.invalid && submitted" class="error">
+          Campo requerido
+        </small>
+      </div>
+      <div class="field-group">
+        <label for="correo">Correo Electrónico</label>
+        <input 
+          id="correo" 
+          type="email"
+          formControlName="correo" 
+          placeholder="ejemplo@correo.com" 
+          required 
+        />
+        <small *ngIf="enrollmentForm.get('correo')?.invalid && submitted" class="error">
+          Correo válido requerido
+        </small>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn primary" [disabled]="loading">
+        {{ loading ? 'Registrando...' : 'Registrar Matrícula' }}
+      </button>
+      <button type="button" class="btn secondary" (click)="resetForm()" [disabled]="loading">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

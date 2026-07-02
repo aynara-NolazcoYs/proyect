@@ -1,0 +1,53 @@
+<main class="app-shell">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-small">Edu</span><span class="brand-large">Futuro</span>
+    </div>
+    <h1>SISTEMA DE GESTIÓN</h1>
+    <p class="subtitle">EduFuturo</p>
+  </header>
+
+  <section class="dashboard-card" *ngIf="!loading">
+    <div class="dashboard-summary">
+      <article class="stat-card">
+        <p class="stat-title">Total estudiantes</p>
+        <p class="stat-value">{{ dashboardData.totalStudents }}</p>
+        <button class="btn" (click)="openStudentsPanel()">Ver Estudiantes</button>
+      </article>
+      <article class="stat-card highlight">
+        <p class="stat-title">Total Matrículas</p>
+        <p class="stat-value">{{ dashboardData.totalEnrollments }}</p>
+        <button class="btn" (click)="openEnrollmentPanel()">Registrar Matrícula</button>
+      </article>
+      <article class="stat-card">
+        <p class="stat-title">Total Promotores</p>
+        <p class="stat-value">{{ dashboardData.totalPromoters }}</p>
+        <button class="btn" (click)="openPromotersPanel()">Ver Promotores</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="content-panel" [class.hidden]="!showStudentsPanel">
+    <div class="panel-header">
+      <h2>Lista de Estudiantes</h2>
+      <button class="btn secondary" (click)="closeAllPanels()">Cerrar</button>
+    </div>
+    <app-students-list *ngIf="showStudentsPanel"></app-students-list>
+  </section>
+
+  <section class="content-panel" [class.hidden]="!showPromotersPanel">
+    <div class="panel-header">
+      <h2>Lista de Promotores</h2>
+      <button class="btn secondary" (click)="closeAllPanels()">Cerrar</button>
+    </div>
+    <app-promoters-list *ngIf="showPromotersPanel"></app-promoters-list>
+  </section>
+
+  <section class="content-panel" [class.hidden]="!showEnrollmentPanel">
+    <div class="panel-header">
+      <h2>Registrar Matrícula</h2>
+      <button class="btn secondary" (click)="closeAllPanels()">Cancelar</button>
+    </div>
+    <app-enrollment-form *ngIf="showEnrollmentPanel"></app-enrollment-form>
+  </section>
+</main>

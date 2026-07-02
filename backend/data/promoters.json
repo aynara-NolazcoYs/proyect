@@ -1,0 +1,5 @@
+[
+  {"id": 1, "dni": "77112233", "nombreCompleto": "Carlos Mendoza", "sede": "SED-001", "email": "cmendoza@edufuturo.com"},
+  {"id": 2, "dni": "77112234", "nombreCompleto": "Ana Maria", "sede": "SED-003", "email": "amaria@edufuturo.com"},
+  {"id": 3, "dni": "77112235", "nombreCompleto": "Carlos Mendoza", "sede": "SED-001", "email": "cmendoza2@edufuturo.com"}
+]

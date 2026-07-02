@@ -1,0 +1,53 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.bak
+release.properties
+dependency-reduced-pom.xml
+.flattened-pom.xml
+.m2/
+
+# IDEs
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/
+
+# IDE
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Spring Boot
+.env
+*.log
+build/
+bin/
+
+# Database
+*.db
+*.sqlite
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+.._*
+.Spotlight-V100
+.Trashes
+
+# Node (if used)
+node_modules/
+npm-debug.log*
+
+# Docker
+.docker/
+.dockerignore

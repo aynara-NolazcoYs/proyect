@@ -1,0 +1,22 @@
+<div class="table-wrapper">
+  <table *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>DNI</th>
+        <th>Nombre y Apellido</th>
+        <th>Sede Base</th>
+        <th>Email Corporativo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let promoter of promoters">
+        <td>{{ promoter.dni }}</td>
+        <td>{{ promoter.nombreCompleto }}</td>
+        <td>{{ promoter.sede }}</td>
+        <td>{{ promoter.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="loading" class="loading">Cargando...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+</div>

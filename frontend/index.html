@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduFuturo - Sistema de Gestión</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-small">Edu</span><span class="brand-large">Futuro</span>
+      </div>
+      <h1>SISTEMA DE GESTIÓN</h1>
+      <p class="subtitle">EduFuturo</p>
+    </header>
+
+    <section class="dashboard-card">
+      <div class="dashboard-summary">
+        <article class="stat-card">
+          <p class="stat-title">Total estudiantes</p>
+          <p class="stat-value" id="total-students">0</p>
+          <button class="btn" id="view-students">Ver Estudiantes</button>
+        </article>
+        <article class="stat-card highlight">
+          <p class="stat-title">Total Matrículas</p>
+          <p class="stat-value" id="total-enrollments">0</p>
+          <button class="btn" id="register-enrollment">Registrar Matrícula</button>
+        </article>
+        <article class="stat-card">
+          <p class="stat-title">Total Promotores</p>
+          <p class="stat-value" id="total-promoters">0</p>
+          <button class="btn" id="view-promoters">Ver Promotores</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-panel hidden" id="students-panel">
+      <div class="panel-header">
+        <h2>Lista de Estudiantes</h2>
+        <button class="btn secondary" id="close-students">Cerrar</button>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>Nombre</th><th>Apellido</th><th>DNI</th><th>Correo electrónico</th></tr>
+          </thead>
+          <tbody id="students-table"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="content-panel hidden" id="promoters-panel">
+      <div class="panel-header">
+        <h2>Lista de Promotores</h2>
+        <button class="btn secondary" id="close-promoters">Cerrar</button>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>DNI</th><th>Nombre y Apellido</th><th>Sede Base</th><th>Email Corporativo</th></tr>
+          </thead>
+          <tbody id="promoters-table"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="content-panel hidden" id="enrollment-panel">
+      <div class="panel-header">
+        <h2>Registrar Matrícula</h2>
+        <button class="btn secondary" id="close-enrollment">Cancelar</button>
+      </div>
+      <form id="enrollment-form" class="enrollment-form">
+        <div class="row">
+          <div class="field-group">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" placeholder="Ej. Juan" required />
+          </div>
+          <div class="field-group">
+            <label for="dni">DNI</label>
+            <input id="dni" name="dni" placeholder="Ingresa tu número de DNI" required />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field-group">
+            <label for="apellido">Apellido</label>
+            <input id="apellido" name="apellido" placeholder="Ej. Perez" required />
+          </div>
+          <div class="field-group">
+            <label for="sede">Sede</label>
+            <select id="sede" name="sede" required>
+              <option value="">Selecciona una sede</option>
+              <option value="SED-001">SED-001</option>
+              <option value="SED-002">SED-002</option>
+              <option value="SED-003">SED-003</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field-group">
+            <label for="correo">Correo</label>
+            <input id="correo" name="correo" placeholder="ej. usuario@gmail.com" type="email" required />
+          </div>
+          <div class="field-group">
+            <label for="promotor">Promotor</label>
+            <select id="promotor" name="promotor" required>
+              <option value="">Selecciona un promotor</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field-group full-width">
+            <label for="carrera">Carrera</label>
+            <select id="carrera" name="carrera" required>
+              <option value="">Selecciona una carrera</option>
+              <option value="Ingeniería de Software">Ingeniería de Software</option>
+              <option value="Marketing Digital">Marketing Digital</option>
+              <option value="Administración">Administración</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Guardar</button>
+          <button type="button" class="btn secondary" id="cancel-enrollment">Cancelar</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

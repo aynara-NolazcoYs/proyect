@@ -1,0 +1,22 @@
+<div class="table-wrapper">
+  <table *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>DNI</th>
+        <th>Correo electrónico</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{ student.nombre }}</td>
+        <td>{{ student.apellido }}</td>
+        <td>{{ student.dni }}</td>
+        <td>{{ student.correo }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="loading" class="loading">Cargando...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+</div>
