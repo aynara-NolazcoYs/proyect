@@ -1,6 +1,54 @@
 version: '3.8'
 
 services:
+  # Frontend - Angular
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: edufuturo-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    healthcheck:
+      test: [ "CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - edufuturo-network
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+
+  # Backend - Spring Boot
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: edufuturo-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:sqlserver://sqlserver:1433;databaseName=EduFuturoDB;encrypt=true;trustServerCertificate=true
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=EduFuturo@2024
+      - SPRING_PROFILES_ACTIVE=prod
+    healthcheck:
+      test: [ "CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/api/dashboard" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    networks:
+      - edufuturo-network
+
+  # Database - SQL Server 2022
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: edufuturo-db
@@ -17,6 +65,7 @@ services:
       interval: 10s
       timeout: 3s
       retries: 10
+      start_period: 40s
     networks:
       - edufuturo-network
 
